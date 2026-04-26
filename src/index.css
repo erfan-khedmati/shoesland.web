@@ -1,2 +1,11 @@
 @import "tailwindcss";
 @custom-variant hover (&:hover);
+
+@font-face {
+    font-family: vazir;
+    src: url("/src/assets/fonts/Vazir.ttf");
+}
+
+@theme {
+    --font-display: "vazir", sans-serif;
+}
