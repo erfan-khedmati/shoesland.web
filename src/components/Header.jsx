@@ -35,7 +35,7 @@ function Header() {
   }, [menuOpen]);
 
   return (
-    <div className="flex flex-row-reverse justify-between pt-5 items-center text-dark-gray">
+    <div className="flex flex-row-reverse justify-between pt-5 items-center text-dark-gray px-10">
       <div className="flex flex-row-reverse items-center gap-10">
         <h1 className="font-extrabold tracking-widest text-navy text-2xl">
           SHOESLAND
