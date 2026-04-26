@@ -1,12 +1,15 @@
-import { Outlet } from "react-router-dom"
+import { Outlet } from "react-router-dom";
+import Header from "../components/Header";
 
 function MainLayout() {
   return (
-    <div>
-        <h1 className="font-bold text-4xl text-blue-400">MainLayout</h1>
+    <div className="font-display px-10 bg-[#F3F3F3] w-screen h-screen">
+      <Header />
+      <main>
         <Outlet />
+      </main>
     </div>
-  )
+  );
 }
 
-export default MainLayout
+export default MainLayout;
