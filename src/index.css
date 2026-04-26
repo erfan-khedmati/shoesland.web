@@ -8,4 +8,8 @@
 
 @theme {
     --font-display: "vazir", sans-serif;
+    --color-navy: #0F4C75;
+    --color-light-blue: #BBE1FA;
+    --color-dark-gray: #1e1e1e;
+    --color-primary-blue: #3281B9;
 }
