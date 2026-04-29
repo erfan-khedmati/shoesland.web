@@ -4,6 +4,7 @@ import MainLayout from "../layouts/MainLayout"
 import Home from "../pages/Home"
 import { useDispatch } from "react-redux"
 import { fetchUser } from "../features/auth/AuthSlice"
+import Auth from "../pages/Auth"
 
 function MainRoute() {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ function MainRoute() {
         <Route element={<MainLayout/>}>
             <Route index path="/" element={<Home />} />
         </Route>
+        <Route path="/login" element={<Auth />} />
     </Routes>
   )
 }

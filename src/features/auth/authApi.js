@@ -11,3 +11,4 @@ export const api = async (url, options= {}) => {
 }
 
 export const isUserAuth = ()=> api("/api/auth/isAuth");
+export const login = (body)=> api("/api/auth/login", {method: "POST", body: JSON.stringify(body)});
