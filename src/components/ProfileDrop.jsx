@@ -1,5 +1,7 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
+
+import { useSelector } from "react-redux";
 // Icons
 import TestAcount from "../assets/images/test_account.svg";
 import ChevronDown from "../assets/images/chevron-down.svg";
@@ -10,6 +12,10 @@ function ProfileDrop() {
   const dropdownRef = useRef(null);
   const toggleBtnRef = useRef(null);
 
+  // User Information
+  const user = useSelector((state) => state.auth);
+  console.log(user);
+
   //   handle drop down stat on click
   const handleDropDown = () => {
     setIsDropDown(!isDropDown);
@@ -17,8 +23,12 @@ function ProfileDrop() {
 
   const handleClickOutside = (e) => {
     console.log("hello");
-    
-    if (dropdownRef.current && !dropdownRef.current.contains(e.target) && !toggleBtnRef.current.contains(e.target)) {
+
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(e.target) &&
+      !toggleBtnRef.current.contains(e.target)
+    ) {
       setIsDropDown(false);
       console.log("done");
     }
@@ -38,19 +48,37 @@ function ProfileDrop() {
 
   return (
     <div className="relative">
-      <div className="flex items-center bg-white p-5 rounded-full">
-        <div className="pr-10 cursor-pointer" ref={toggleBtnRef} onClick={handleDropDown}>
-          <img
-            className="w-6"
-            src={isDropDown ? ChevronUp : ChevronDown}
-            alt="chevron down"
-          />
+      {user.loading ? (
+        <div className="flex items-center bg-gray-300 p-5 rounded-full animate-pulse">
+          <div className="mr-7 cursor-pointer w-10 h-10 bg-gray-400 rounded-full"></div>
+          <div className="mr-2 w-32 h-8 rounded-full bg-gray-400"></div>
+          <div className="w-10 h-10 bg-gray-400 rounded-full"></div>
         </div>
-        <div className="pr-2 truncate">عرفان خدمتی</div>
-        <div>
-          <img className="w-10" src={TestAcount} alt="profile icon" />
+      ) : user.user ? (
+        <div className="flex items-center bg-white p-5 rounded-full">
+          <div
+            className="pr-10 cursor-pointer"
+            ref={toggleBtnRef}
+            onClick={handleDropDown}
+          >
+            <img
+              className="w-6"
+              src={isDropDown ? ChevronUp : ChevronDown}
+              alt="chevron down"
+            />
+          </div>
+          <div className="pr-2 truncate">عرفان خدمتی</div>
+          <div>
+            <img className="w-10" src={TestAcount} alt="profile icon" />
+          </div>
         </div>
-      </div>
+      ) : (
+        // this part will completed later
+        <div className="bg-white p-5 rounded-full cursor-pointer hover:bg-primary-blue hover:text-white">
+          <Link to="/authentication">ورود به حساب کاربری</Link>
+        </div>
+      )}
+
       {/* Hidden menu */}
       <div
         className={`${!isDropDown && "hidden"} absolute top-[120%] left-0 w-full bg-white rounded-2xl`}
